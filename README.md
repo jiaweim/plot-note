@@ -1,4 +1,4 @@
-# Python 绘图
+# 绘图
 
 - [火山图](plots/volcano_plot.md)
 - [维恩图](plots/venn.md)
@@ -36,3 +36,20 @@ http://cellbio.emory.edu/bnanes/figures/
 ## 在线绘图
 
 - [ProcessOn](https://www.processon.com) 在线流程图绘制网页工具
+
+## 工具
+
+### Python
+
+- [Matplotlib](https://matplotlib.org/)
+- [seaborn](https://seaborn.pydata.org/)
+- [Plotly](https://plotly.com/)
+- [Bokeh](https://bokeh.org/)
+
+### Java
+
+- [JFreeChart](https://github.com/jfree/jfreechart)
+- [XChart](https://github.com/knowm/XChart)
+- [chart-fx](https://github.com/fair-acc/chart-fx)
+- [Orson Charts]()
+- [ECharts-Java](https://github.com/ECharts-Java/ECharts-Java)
