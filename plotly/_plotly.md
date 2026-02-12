@@ -13,6 +13,7 @@
 - [主题和模板](6_theme_template.md)
 - 颜色
 	- [[colorscales|连续色阶]]
+	- [[builtin-colorscales|内置色阶]]
 - 自定义选项
   - [标题](11_title.md)
   - [坐标轴](12_axes.md)
@@ -34,7 +35,7 @@
   - [三维坐标](3D_axes.md)
 - 颜色
   - [离散颜色](color_discrete.md)
-  - [内置色阶](color_builtin_color_scale.md)
+  - [内置色阶](builtin-colorscales.md)
 - [WebGL-大规模数据绘图](webgl.md)
 - [多图 Figure](15_subplot.md)
 - [图大小](9_graph_size.md)
@@ -54,7 +55,7 @@
 
 - [CSV 数据绘图](advanced/plot_data_from_csv.md)
 
-## References
+## 参考
 
 - [plotly](https://plot.ly/python/getting-started/)
 - [plotly python](https://plotly.com/python/)
