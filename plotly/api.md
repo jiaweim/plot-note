@@ -1,11 +1,5 @@
 # API
 
-- [API](#api)
-  - [Figure](#figure)
-    - [参数](#参数)
-  - [属性](#属性)
-    - [name](#name)
-
 ## Figure
 
 ### 参数
