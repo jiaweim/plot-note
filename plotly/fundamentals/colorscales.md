@@ -10,7 +10,7 @@
 
 - **色阶（color scales）**
 
-色阶（color scale）表示从 0 到 1 数值到某个色域的映射。默认色阶取决于当前 [template](6_theme_template.md) 的 `layout.colorscales` 属性。
+色阶（color scale）数值 [0, 1] 到某个色域的映射。默认色阶取决于当前 [template](6_theme_template.md) 的 `layout.colorscales` 属性。
 
 - px API 使用 `color_continuous_scale` 参数显式指定
 - go API 使用 `graph_objects` 的 `layout.colorscale` 属性显式指定，如 `go.Scatter` 中的 `layout.coloraxis` 或 `marker.colorscale`，或 `go.Heatmap` 中的 `colorscale`。
@@ -19,7 +19,7 @@
 
 - **color ranges**
 
-color ranges 表示映射到色阶 [0,1] 范围数据的最大值和最小值。Color ranges 默认是输入数据的范围：
+color ranges 表示映射到色阶 [0,1] 范围数据的最大值和最小值。Color ranges 默认为输入数据范围：
 
 - 大多数 px 函数可以通过 `range_color` 或 `color_continuous_midpoint` 参数指定范围。
 - go API 可以通过 `cmin`, `cmid`, `cmax` 或者 `zmin`, `zmid`, `zmax` 指定。如 `go.Scatter` 的 `layout.coloraxis.cmin`, `marker.cmin`，`go.Heatmap` 的 `cmin`。
@@ -28,7 +28,7 @@ color ranges 表示映射到色阶 [0,1] 范围数据的最大值和最小值。
 
 - **color bar**
 
-色条（color bar）是类似于图例（Legend）的 color range 和色阶的可视化表示，可以添加刻度线和标签。
+色条（color bar）是类似于图例（Legend），是 colorscale 和 color range 的可视化表示，还可以添加刻度线和标签。
 
 可以通过 `layout.coloraxis.colorbar` 属性配置色条，也可以在 `go.Scatter` 的 `marker.colorbar`，`go.Heatmap` 的 `colorbar` 等地方配置。
 
@@ -97,7 +97,7 @@ fig.show()
 
 ## px 色阶
 
-px 默认使用当前模板的 `layout.colorscales.sequential` 色阶属性，默认模板为 `plotly`，其色阶为 `Plasma`。
+px 默认使用当前模板的 `layout.colorscales.sequential` 色阶属性，而默认模板为 `plotly`，其色阶为 `Plasma`。
 
 下面用 px 创建 scatter，使用 `Viridis` 色阶：
 
@@ -106,7 +106,8 @@ import plotly.express as px
   
 df = px.data.iris()  
 fig = px.scatter(df, x="sepal_width", y="sepal_length",  
-                 color="sepal_length", color_continuous_scale=px.colors.sequential.Viridis)  
+                 color="sepal_length", 
+                 color_continuous_scale=px.colors.sequential.Viridis)  
   
 fig.show()
 ```
@@ -124,7 +125,8 @@ import plotly.express as px
   
 df = px.data.iris()  
 fig = px.scatter(df, x="sepal_width", y="sepal_length",  
-                 color="sepal_length", color_continuous_scale='Inferno')  
+                 color="sepal_length", 
+                 color_continuous_scale='Inferno')  
   
 fig.show()
 ```
@@ -133,7 +135,7 @@ fig.show()
 
 ### 反转色阶
 
-通过在内置色阶名称或 plotly 对象后添加后缀 `_r`，可以反转内置色阶，例如：
+在内置色阶名称或 plotly 对象后添加后缀 `_r`，可以反转内置色阶，例如：
 
 - 色阶名称添加 `_r` 后缀
 
@@ -141,8 +143,11 @@ fig.show()
 import plotly.express as px  
   
 df = px.data.gapminder().query("year == 2007").sort_values(by="lifeExp")  
-fig = px.bar(df, y="continent", x="pop", color="lifeExp", orientation="h",  
-             color_continuous_scale='Bluered_r', hover_name="country")  
+fig = px.bar(df, y="continent", x="pop", 
+			 color="lifeExp",
+			 orientation="h", 
+             color_continuous_scale='Bluered_r',
+             hover_name="country")  
   
 fig.show()
 ```
@@ -165,13 +170,14 @@ fig.show()
 
 ### 创建色阶
 
-px 的 `color_continuous_scale` 参数可以自定义色阶:
+px 的 `color_continuous_scale` 参数可用来自定义色阶:
 
 ```python
 import plotly.express as px  
   
 df = px.data.iris()  
-fig = px.scatter(df, x="sepal_width", y="sepal_length", color="sepal_length",  
+fig = px.scatter(df, x="sepal_width", y="sepal_length", 
+				 color="sepal_length",  
                  color_continuous_scale=["red", "green", "blue"])  
   
 fig.show()
@@ -188,15 +194,18 @@ fig.show()
 import plotly.express as px  
   
 df = px.data.iris()  
-fig = px.scatter(df, x="sepal_width", y="sepal_length", color="sepal_length",  
-                 color_continuous_scale=[(0, "red"), (0.5, "green"), (1, "blue")])  
+fig = px.scatter(df, x="sepal_width", y="sepal_length", 
+				 color="sepal_length",  
+                 color_continuous_scale=[(0, "red"), 
+						                 (0.5, "green"), 
+						                 (1, "blue")])  
   
 fig.show()
 ```
 
 ![[colorscale-8.png]]
 ```ad-tip
-即 `[(0, "red"), (0.5, "green"), (1, "blue")]` 和 `["red", "green", "blue"]` 等价。
+`[(0, "red"), (0.5, "green"), (1, "blue")]` 和 `["red", "green", "blue"]` 等价。
 ```
 
 ### 创建离散色阶
@@ -207,10 +216,14 @@ fig.show()
 import plotly.express as px  
   
 df = px.data.iris()  
-fig = px.parallel_coordinates(df, color="species_id",  
-                              color_continuous_scale=[(0.00, "red"), (0.33, "red"),  
-                                                      (0.33, "green"), (0.66, "green"),  
-                                                      (0.66, "blue"), (1.00, "blue")])  
+fig = px.parallel_coordinates(df, 
+							  color="species_id",  
+                              color_continuous_scale=[(0.00, "red"), 
+						                              (0.33, "red"),  
+                                                      (0.33, "green"), 
+                                                      (0.66, "green"),  
+                                                      (0.66, "blue"), 
+                                                      (1.00, "blue")])  
 fig.show()
 ```
 
@@ -225,7 +238,8 @@ import plotly.express as px
   
 df = px.data.iris()  
 fig = px.scatter(df, x="sepal_width", y="sepal_length",  
-    color="sepal_length", range_color=[5, 8])  
+				 color="sepal_length", 
+				 range_color=[5, 8])  
   
 fig.show()
 ```
@@ -246,10 +260,11 @@ import plotly.express as px
 df = px.data.gapminder().query("year == 2007")  
 avg_lifeExp = (df['lifeExp'] * df['pop']).sum() / df['pop'].sum()  
   
-fig = px.choropleth(df, locations="iso_alpha", color="lifeExp",  
-    color_continuous_scale=px.colors.diverging.BrBG,  
-    color_continuous_midpoint=avg_lifeExp,  
-    title="World Average Life Expectancy in 2007 in years was %.1f" % avg_lifeExp)  
+fig = px.choropleth(df, locations="iso_alpha", 
+					color="lifeExp",  
+					color_continuous_scale=px.colors.diverging.BrBG,  
+					color_continuous_midpoint=avg_lifeExp,  
+					title="World Average Life Expectancy in 2007 in years was %.1f" % avg_lifeExp)  
 fig.show()
 ```
 
@@ -257,11 +272,9 @@ fig.show()
 
 ## px 自定义色条
 
-PX 的所有子图和 `layout.coloraxis` 绑定，而不是使用子图特异性的色轴。因此可以在此处配置色条。
+px 的所有子图和 `layout.coloraxis` 绑定，而不是使用子图特异性的色轴。因此可以在此处配置色条。
 
 ### 隐藏色条
-
-下面隐藏色条:
 
 ```python
 import plotly.express as px  
@@ -312,9 +325,12 @@ df = px.data.iris()
 fig = px.parallel_coordinates(df,  
                               dimensions=["sepal_length", "sepal_width", "petal_length", "petal_width"],  
                               color="species_id", range_color=[0.5, 3.5],  
-                              color_continuous_scale=[(0.00, "red"), (0.33, "red"),  
-                                                      (0.33, "green"), (0.66, "green"),  
-                                                      (0.66, "blue"), (1.00, "blue")])  
+                              color_continuous_scale=[(0.00, "red"), 
+						                              (0.33, "red"),  
+                                                      (0.33, "green"), 
+                                                      (0.66, "green"),  
+                                                      (0.66, "blue"), 
+                                                      (1.00, "blue")])  
   
 fig.update_layout(coloraxis_colorbar=dict(  
     title="Species",  
@@ -337,7 +353,9 @@ import numpy as np
   
 df = px.data.gapminder().query("year == 2007")  
 fig = px.scatter(df, y="lifeExp", x="pop",  
-                 color=np.log10(df["pop"]), hover_name="country", log_x=True)  
+                 color=np.log10(df["pop"]), 
+                 hover_name="country", 
+                 log_x=True)  
   
 fig.update_layout(coloraxis_colorbar=dict(  
     title="Population",  
@@ -359,8 +377,7 @@ import urllib.request
 import plotly.graph_objects as go  
   
 # Load heatmap data  
-response = urllib.request.urlopen(  
-    "https://raw.githubusercontent.com/plotly/datasets/master/custom_heatmap_colorscale.json")  
+response = urllib.request.urlopen(  "https://raw.githubusercontent.com/plotly/datasets/master/custom_heatmap_colorscale.json")  
 dataset = json.load(response)  
   
 # Create and show figure  
@@ -373,7 +390,7 @@ fig.add_trace(go.Heatmap(
         titleside="top",  
         tickmode="array",  
         tickvals=[2, 25, 50, 75, 100],  
-        labelalias={100: "Hot", 50: "Mild", 2: "Cold"},  
+        labelalias={100: "Hot", 50: "Mild", 2: "Cold"}, # 设置别名 
         ticks="outside"  
     )  
 ))  
