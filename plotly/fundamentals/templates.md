@@ -1,21 +1,5 @@
 # 主题和模板
 
-- [主题和模板](#主题和模板)
-  - [简介](#简介)
-  - [内置主题](#内置主题)
-    - [查看可用主题](#查看可用主题)
-    - [指定主题（Express）](#指定主题express)
-    - [指定主题（graph object）](#指定主题graph-object)
-    - [指定默认主题](#指定默认主题)
-    - [禁用默认主题](#禁用默认主题)
-  - [创建主题](#创建主题)
-    - [layout 属性](#layout-属性)
-    - [data 属性](#data-属性)
-    - [Theming object tuple properties](#theming-object-tuple-properties)
-    - [合并主题](#合并主题)
-    - [检查内置主题](#检查内置主题)
-  - [参考](#参考)
-
 ***
 
 ## 简介
