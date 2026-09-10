@@ -1,15 +1,17 @@
 # Figure 数据结构
 
-2022-04-14, 18:21
+2026-08-13, update
+2022-04-14, 18:21⭐
+@author Jiawei Mao
 ***
 
 ## 简介
 
-plotly Python 包可用于创建、操作和渲染 Figure，其中渲染过程在后台使用 Plotly.js JavaScript 库实现。plotly.py 使用 python dict 或 `plotly.graph_objecs.Figure` 类表示 Figure，序列化为 JSON 文本格式后传递给 plotly.js 进行渲染。
+plotly Python 库可用于创建、操作和渲染各类可视化 Figure（chart, plot, map, diagram），其中渲染底层依托 Plotly.js JavaScript 库。plotly.py 使用 python dict 或 `plotly.graph_objecs.Figure` 类表示 Figure，序列化为 JSON 文本格式后传递给 plotly.js 进行渲染。
 
-```ad-note
-推荐从 plotly 的高级 API `plotly.express` 开始学习 plotly，该 API 包含简洁易用的绘图函数，这些函数均返回 `plotly.graph_objects.Figure` 对象。这篇内容主要介绍表示这些对象所用的数据结构，适合希望了解更多自定义功能的用户。
-```
+> [!NOTE]
+>
+> 推荐从 plotly 的高级 API `plotly.express` 开始学习 plotly，该 API 包含简洁易用的绘图函数，这些函数均返回 `plotly.graph_objects.Figure` 对象。这篇内容主要介绍表示这些对象所用的数据结构，适合希望了解更多自定义功能的用户。
 
 可以使用 `print(fig)` 查看 `plotly.graph_objects.Figure` 对象（包括 px 函数返回的对象）的底层数据结构，在 JupyterLab 中还可以使用 `fig.show("json")` 查看。`Figure` 还支持 `fig.to_dict()` 和 `fig.to_json()` 方法。
 
@@ -46,7 +48,7 @@ Figure({
 })
 ```
 
-![[figure-structure-1.png]]
+<img src="images/figure-structure-1.png" width="500" />
 
 ## 属性 Tree
 
