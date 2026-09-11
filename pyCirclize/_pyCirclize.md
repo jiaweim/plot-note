@@ -1,6 +1,7 @@
 # PyCirclize
 
 - [PyCirclize 入门](./getting_started.md)
+- [弦图](./chord_diagram.md)
 
 ## 简介
 
