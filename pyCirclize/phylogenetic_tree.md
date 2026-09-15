@@ -1,8 +1,8 @@
 # Phylogenetic Tree
 
-## 1. 简单树图
+## 1. 简单树
 
-用户可以使用 `Circos.initialize_from_tree()` 或 `track.tree()` 方法来绘制系统发育树（Phylogenetic tree）。这两种方法都会返回一个 `TreeViz` 实例，用户可以对该实例进行操作，以添加系统发育树的注释（例如标记和高亮显示）。
+用户可以使用 `Circos.initialize_from_tree()` 或 `track.tree()` 方法来绘制系统发育树（Phylogenetic tree）。这两种方法都会返回一个 `TreeViz` 实例，用户可以对该实例进行操作，以添加系统发育树的注释（例如标记和高亮）。
 
 ### 1.1. 默认样式
 

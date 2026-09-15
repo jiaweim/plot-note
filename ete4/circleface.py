@@ -1,0 +1,44 @@
+# !/usr/bin/env python3
+
+"""
+Example of use of CircleFace.
+在叶节点绘制圆形标记
+"""
+
+import random
+
+from ete4 import Tree
+from ete4.smartview import Layout, BASIC_LAYOUT, CircleFace
+
+random.seed(42)  # so we have the same trees in every run
+
+# Tree randomly populated.
+t = Tree()
+t.populate(
+    20,
+    dist_fn=random.random,
+    support_fn=random.random
+)
+
+# Layout with draw_node() that draws aligned circles on leaves.
+
+colors = ['red', 'blue', 'green']  # color to choose from
+
+
+def draw_node(node):
+    if node.is_leaf:
+        yield CircleFace(rmax=random.randint(2, 20),
+                         style={'fill': random.choice(colors)},
+                         position='aligned')
+
+
+circles_layout = Layout(name='circles', draw_node=draw_node)
+
+# Launch the explorer.
+
+t.render_sm("D:/circles.svg", layouts=[BASIC_LAYOUT, circles_layout])
+print("SVG exported to circles.svg")
+# t.explore(layouts=[BASIC_LAYOUT, circles_layout])
+#
+# print('Press enter to stop the server and finish.')
+# input()
